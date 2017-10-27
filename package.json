@@ -1,21 +1,21 @@
 {
-  "name": "speedster",
+  "name": "snapcar",
   "version": "1.0.0",
-  "description": "API para el sistema Speedster",
+  "description": "API para el sistema SnapCar",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ftarulla/speedsterAPI.git"
+    "url": "git+https://github.com/danielungs/snapcarAPI.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ftarulla/speedsterAPI/issues"
+    "url": "https://github.com/danielungs/snapcarAPI/issues"
   },
-  "homepage": "https://github.com/ftarulla/speedsterAPI#readme",
+  "homepage": "https://github.com/danielungs/snapcarAPI#readme",
   "dependencies": {
     "body-parser": "^1.15.2",
     "express": "^4.15.2"
