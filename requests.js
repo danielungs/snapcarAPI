@@ -11,11 +11,11 @@ var Coordinate = function(lat, lon) {
 var requests = [
     {
         id: 42,
-        coordinate: new Coordinate(-34.524309,-58.695315),
+        coordinate: new Coordinate(-34.5213293,-58.7008651),
 		availableDrivers: [600, 107, 121]
     }	, {
         id: 80,
-        coordinate: new Coordinate(-34.520388, -58.699936),
+        coordinate: new Coordinate(-34.5213293,-58.7008651),
 		availableDrivers: [105, 201, 222]
     }
 

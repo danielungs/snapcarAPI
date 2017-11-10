@@ -27,15 +27,15 @@ var IncidentType = function(id, description, delay) {
 
 
 var incidents = [
-    new Incident(18, new Coordinate(-34.522977, -58.696872), Date.now(), 2),
-    new Incident(09, new Coordinate(-34.521147, -58.699050), Date.now(), 3),
-    new Incident(81, new Coordinate(-34.521359, -58.700927), Date.now(), 1)
+    new Incident(18, new Coordinate(-34.522110, -58.715965), Date.now(), 2),
+    new Incident(09, new Coordinate(-34.532497, -58.701834), Date.now(), 3),
+    new Incident(81, new Coordinate(-34.527909, -58.707766), Date.now(), 1)
 	]
 
 var incidentstypes = [
-    new IncidentType(1, "accident", 20),
-    new IncidentType(2, "congestion", 30),
-    new IncidentType(3, "massive protest", 60)
+    new IncidentType(1, "accident", 10),
+    new IncidentType(2, "congestion", 15),
+    new IncidentType(3, "massive protest", 30)
 	]
 	
 exports.list = function() {
