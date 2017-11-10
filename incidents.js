@@ -28,7 +28,7 @@ var IncidentType = function(id, description, delay) {
 
 var incidents = [
     new Incident(18, new Coordinate(-34.522110, -58.715965), Date.now(), 2),
-    new Incident(09, new Coordinate(-34.532497, -58.701834), Date.now(), 3),
+    new Incident(19, new Coordinate(-34.532497, -58.701834), Date.now(), 3),
     new Incident(81, new Coordinate(-34.527909, -58.707766), Date.now(), 1)
 	]
 
