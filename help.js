@@ -1,51 +1,51 @@
 var exports = module.exports = {};
 
 var help = {
-    welcome: 'Bienvenidos a Speedster API!',
+    welcome: 'Bienvenidos a snapcar API!',
     urls: {
         'GET': {
-            '/api/tracks/': {
-                "descripción": "Lista los circuitos de carrera.",
-                "ejemplo": "/api/tracks/"
+            '/api/requests/': {			
+                "descripción": "Lista los pedidos.",
+                "ejemplo": "/api/requests/"
             },
-            '/api/tracks/:track_id': {
-                "descripción": "Obtiene el circuito con id :track_id",
-                "ejemplo": "/api/tracks/42"
-            },
-            '/api/webcams/:track_id': {
-                "descripción": "Lista las cámaras del circuito con id :track_id.",
-                "ejemplo": "/api/webcams/42"
-            },
-            '/api/webcams/:track_id/:webcam_id': {
-                "descripción": "Obtiene la cámara con id :webcam_id del circuito con id :track_id",
-                "ejemplo": "/api/webcams/42/86"
+            '/api/requests/:request_id': {
+                "descripción": "Obtiene un pedido con id :request_id",
+                "ejemplo": "/api/requests/42"
             },
             // A partir de acá las urls dan a entender que el circuito está preseleccionado
             // y no se pasa en la URL ... INPOT!!
-            '/api/runners/': {
-                "descripción": "Lista los corredores de la carrera.",
-                "ejemplo": "/api/runners/"
+            '/api/drivers/': {
+                "descripción": "Lista los conductores.",
+                "ejemplo": "/api/drivers/"
             },
-            '/api/runners/:runner_id': {
-                "descripción": "Obtiene el corredor con id :runner_id",
-                "ejemplo": "/api/runners/780"
+            '/api/drivers/:driver_id': {
+                "descripción": "Obtiene el conductor con id :driver_id",
+                "ejemplo": "/api/drivers/201"
             },
             '/api/positions/': {
-                "descripción": "Lista las posiciones de todos los corredores.",
+                "descripción": "Lista las posiciones de todos los conductores.",
                 "ejemplo": "/api/positions/"
             },
-            '/api/positions/:runner_id': {
-                "descripción": "Obtiene las posiciones del corredor con id :runner_id",
-                "ejemplo": "/api/positions/780"
+            '/api/positions/:driver_id': {
+                "descripción": "Obtiene las posiciones de un conductor con id :driver_id",
+                "ejemplo": "/api/positions/201"
             },
-            '/api/waterstops/': {
-                "descripción": "Lista los water stops de la carrera.",
-                "ejemplo": "/api/waterstops/"
+            '/api/incidents/': {
+                "descripción": "Lista los incidentes reportados.",
+                "ejemplo": "/api/incidents/"
             },
-            '/api/waterstops/:waterstop_id': {
-                "descripción": "Obtiene el water stop con id :waterstop_id",
-                "ejemplo": "/api/waterstops/81"
+            '/api/incidents/:incident_id': {
+                "descripción": "Obtiene el incidente con id :incident_id",
+                "ejemplo": "/api/incidents/81"
             },
+            '/api/incidentstypes': {
+                "descripción": "Lista los tipos de incidentes.",
+                "ejemplo": "/api/incidentstypes/"
+            },
+            '/api/incidentstypes/:incidenttype_id': {
+                "descripción": "Obtiene el tipo de incidente con id :incidenttype_id",
+                "ejemplo": "/api/incidentstypes/1"
+            }
         }
     }
 }
@@ -53,3 +53,15 @@ var help = {
 exports.list = function() {
     return help;
 }
+
+/*
+            '/api/webcams/:request_id': {
+                "descripción": "Lista las cámaras del circuito con id :request_id.",
+                "ejemplo": "/api/webcams/42"
+            },
+            '/api/webcams/:request_id/:webcam_id': {
+                "descripción": "Obtiene la cámara con id :webcam_id del circuito con id :request_id",
+                "ejemplo": "/api/webcams/42/86"
+            },
+
+*/

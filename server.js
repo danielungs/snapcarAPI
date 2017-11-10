@@ -3,15 +3,15 @@ var bodyParser = require('body-parser');
 var router = express.Router();
 
 var help = require("./help.js");
-var tracks = require("./tracks.js");
-var runners = require("./runners.js");
+var requests = require("./requests.js");
+var drivers = require("./drivers.js");
 var positions = require("./positions.js");
-var webcams = require("./webcams.js");
-var waterstops = require("./waterstops.js");
+var incidents = require("./incidents.js");
+//var webcams = require("./webcams.js");
 
 var version = {
-    id: '0.1.1',
-    name: 'fastspeedster',
+    id: '0.1',
+    name: 'snapcar',
     lastupdate: Date.now()
 }
 
@@ -34,97 +34,98 @@ router.get('/', function(req, res) {
     res.json(help.list());
 });
 
-// Tracks
-var urlTrack = '/tracks/';
-router.route(urlTrack)
+// requests
+var urlRequest = '/requests/';
+router.route(urlRequest)
     .get(function(req, res) {
-        console.log("GET: " + urlTrack);
-        console.log("Getting tracks list...");
+        console.log("GET: " + urlRequest);
+        console.log("Getting requests list...");
 
         var response = {
-            tracks: tracks.list(),
+            requests: requests.list(),
             version: version
         }
         res.json(response);
     });
 
-router.route(urlTrack + ':track_id')
+router.route(urlRequest + ':request_id')
     .get(function(req, res) {
-        console.log("GET: " + urlTrack + ':track_id');
+        console.log("GET: " + urlRequest + ':request_id');
 
-        var id = req.params.track_id;
+        var id = req.params.request_id;
         console.log(id);
 
-        var track = tracks.get(id);
-        console.log(track);
+        var request = requests.get(id);
+        console.log(request);
 
-        if (!track) {
+        if (!request) {
             // http://stackoverflow.com/questions/8393275/how-to-programmatically-send-a-404-response-with-express-node
             res.status(404)
-               .send('Track inexistente.');
+               .send('Request inexistente.');
 
             return;
         }
 
         var response = {
-            track: track,
+            request: request,
             version: version
         }
         res.json(response);
     });
 
-// Runner
-var urlRunner = '/runners/';
-router.route(urlRunner)
+// Driver
+var urlDriver = '/drivers/';
+router.route(urlDriver)
     .get(function(req, res) {
-        console.log("GET: " + urlRunner);
-        console.log("Getting runners list...");
+        console.log("GET: " + urlDriver);
+        console.log("Getting drivers list...");
 
         var response = {
-            runners: runners.list(),
+            drivers: drivers.list(),
             version: version
         }
         res.json(response);
     });
 
-router.route(urlRunner + ':runner_id')
+router.route(urlDriver + ':driver_id')
     .get(function(req, res) {
-        console.log("GET: " + urlRunner + ':runner_id');
+        console.log("GET: " + urlDriver + ':driver_id');
 
-        var id = req.params.runner_id;
+        var id = req.params.driver_id;
         console.log(id);
 
-        var runner = runners.get(id);
-        console.log(runner);
+        var driver = drivers.get(id);
+        console.log(driver);
 
-        if (!runner) {
+        if (!driver) {
             // http://stackoverflow.com/questions/8393275/how-to-programmatically-send-a-404-response-with-express-node
             res.status(404)
-               .send('Runner inexistente.');
+               .send('Driver inexistente.');
 
             return;
         }
 
         var response = {
-            runner: runner,
+            driver: driver,
             version: version
         }
         res.json(response);
     });
 
+/*
 //
 var urlWebcam = '/webcams/';
-router.route(urlWebcam + ':track_id')
+router.route(urlWebcam + ':request_id')
     .get(function(req, res) {
-        console.log("GET: " + urlWebcam + ':track_id');
+        console.log("GET: " + urlWebcam + ':request_id');
 
-        var trackId = req.params.track_id;
-        console.log(trackId);
+        var requestId = req.params.request_id;
+        console.log(requestId);
 
-        var webcamByTrack = webcams.list(trackId);
-        console.log(webcamByTrack);
+        var webcamByRequest = webcams.list(requestId);
+        console.log(webcamByRequest);
 
-        if (!webcamByTrack) {
+        if (!webcamByRequest) {
             // http://stackoverflow.com/questions/8393275/how-to-programmatically-send-a-404-response-with-express-node
             res.status(404)
                .send('Cámaras inexistentes.');
@@ -133,29 +134,29 @@ router.route(urlWebcam + ':track_id')
         }
 
         var response = {
-            track_id: webcamByTrack.trackId,
-            webcams: webcamByTrack.webcams,
+            request_id: webcamByRequest.requestId,
+            webcams: webcamByRequest.webcams,
             version: version
         }
         res.json(response);
     });
 
-router.route(urlWebcam + ':track_id' + "/" + ":webcam_id")
+router.route(urlWebcam + ':request_id' + "/" + ":webcam_id")
     .get(function(req, res) {
-        console.log("GET: " + urlWebcam + ':track_id' + "/" + ":webcam_id");
+        console.log("GET: " + urlWebcam + ':request_id' + "/" + ":webcam_id");
 
-        var trackId = req.params.track_id;
+        var requestId = req.params.request_id;
         var webcamId = req.params.webcam_id;
-        console.log(trackId);
+        console.log(requestId);
         console.log(webcamId);
 
-        var webcam = webcams.get(trackId, webcamId);
+        var webcam = webcams.get(requestId, webcamId);
         console.log(webcam);
 
         if (!webcam) {
             // http://stackoverflow.com/questions/8393275/how-to-programmatically-send-a-404-response-with-express-node
             res.status(404)
-               .send('Runner inexistente.');
+               .send('Driver inexistente.');
 
             return;
         }
@@ -166,7 +167,7 @@ router.route(urlWebcam + ':track_id' + "/" + ":webcam_id")
         }
         res.json(response);
     });
-
+*/
 // Positions
 var urlPositions = '/positions/';
 router.route(urlPositions)
@@ -181,11 +182,11 @@ router.route(urlPositions)
         res.json(response);
     });
 
-router.route(urlPositions + ':runner_id')
+router.route(urlPositions + ':driver_id')
     .get(function(req, res) {
-        console.log("GET: " + urlPositions + ':runner_id');
+        console.log("GET: " + urlPositions + ':driver_id');
 
-        var id = req.params.runner_id;
+        var id = req.params.driver_id;
         console.log(id);
 
         var position = positions.get(id);
@@ -206,45 +207,84 @@ router.route(urlPositions + ':runner_id')
         res.json(response);
     });
 
-// Runner
-var urlWaterStop = '/waterstops/';
-router.route(urlWaterStop)
+// Incident
+var urlIncident = '/incidents/';
+router.route(urlIncident)
     .get(function(req, res) {
-        console.log("GET: " + urlWaterStop);
-        console.log("Getting waterstops list...");
+        console.log("GET: " + urlIncident);
+        console.log("Getting incidents list...");
 
         var response = {
-            waterstops: waterstops.list(),
+            incidents: incidents.list(),
             version: version
         }
         res.json(response);
     });
 
-router.route(urlWaterStop + ':waterstop_id')
+router.route(urlIncident + ':incident_id')
     .get(function(req, res) {
-        console.log("GET: " + urlWaterStop + ':waterstop_id');
+        console.log("GET: " + urlIncident + ':incident_id');
 
-        var id = req.params.waterstop_id;
+        var id = req.params.incident_id;
         console.log(id);
 
-        var waterstop = waterstops.get(id);
-        console.log(waterstop);
+        var incident = incidents.get(id);
+        console.log(incident);
 
-        if (!waterstop) {
+        if (!incident) {
             // http://stackoverflow.com/questions/8393275/how-to-programmatically-send-a-404-response-with-express-node
             res.status(404)
-               .send('WaterStop inexistente.');
+               .send('Incident inexistente.');
 
             return;
         }
 
         var response = {
-            waterstop: waterstop,
+            incident: incident,
             version: version
         }
         res.json(response);
     });
 
+var urlIncidentTypes = '/incidentstypes/';
+router.route(urlIncidentTypes)
+    .get(function(req, res) {
+        console.log("GET: " + urlIncidentTypes);
+        console.log("Getting incidents types list...");
+
+        var response = {
+            incidenttypes: incidents.types(),
+            version: version
+        }
+        res.json(response);
+    });
+	
+router.route(urlIncidentTypes + ':incidenttype_id')
+    .get(function(req, res) {
+        console.log("GET: " + urlIncidentTypes + ':incidenttype_id');
+
+        var id = req.params.incidenttype_id;
+        console.log(id);
+
+        var incidenttype = incidents.gettype(id);
+        console.log(incidenttype);
+
+        if (!incidenttype) {
+            // http://stackoverflow.com/questions/8393275/how-to-programmatically-send-a-404-response-with-express-node
+            res.status(404)
+               .send('Incident type inexistente.');
+
+            return;
+        }
+
+        var response = {
+            incidenttype: incidenttype,
+            version: version
+        }
+        res.json(response);
+    });
+	
+	
 // Server up!
 var port = process.env.PORT || 3000;
 app.listen(port, function() {
