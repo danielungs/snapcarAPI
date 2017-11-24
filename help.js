@@ -45,7 +45,15 @@ var help = {
             '/api/incidentstypes/:incidenttype_id': {
                 "descripción": "Obtiene el tipo de incidente con id :incidenttype_id",
                 "ejemplo": "/api/incidentstypes/1"
-            }
+            },
+			'/api/cabstand/': {
+                "descripción": "Lista los paradas.",
+                "ejemplo": "/api/cabstand/"
+            },
+            '/api/cabstand/:cabstand_code': {
+                "descripción": "Obtiene la parada con codigo :cabstand_code",
+                "ejemplo": "/api/cabstand/HS01"
+            }			
         }
     }
 }

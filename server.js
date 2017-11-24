@@ -7,7 +7,7 @@ var requests = require("./requests.js");
 var drivers = require("./drivers.js");
 var positions = require("./positions.js");
 var incidents = require("./incidents.js");
-//var webcams = require("./webcams.js");
+var cabstand = require("./cabstand.js");
 
 var version = {
     id: '0.1',
@@ -284,6 +284,44 @@ router.route(urlIncidentTypes + ':incidenttype_id')
         res.json(response);
     });
 	
+// Cabstand
+var urlCabstand = '/cabstand/';
+router.route(urlCabstand)
+    .get(function(req, res) {
+        console.log("GET: " + urlCabstand);
+        console.log("Getting cabstand list...");
+
+        var response = {
+            cabstand: cabstand.list(),
+            version: version
+        }
+        res.json(response);
+    });
+
+router.route(urlCabstand + ':cabstand_id')
+    .get(function(req, res) {
+        console.log("GET: " + urlCabstand + ':cabstand_id');
+
+        var id = req.params.cabstand_id;
+        console.log(id);
+
+        var elem_cabstand = cabstand.get(id);
+        console.log(elem_cabstand);
+
+        if (!elem_cabstand) {
+            // http://stackoverflow.com/questions/8393275/how-to-programmatically-send-a-404-response-with-express-node
+            res.status(404)
+               .send('Parada inexistente.');
+
+            return;
+        }
+
+        var response = {
+            cabstand: elem_cabstand,
+            version: version
+        }
+        res.json(response);
+    });
 	
 // Server up!
 var port = process.env.PORT || 3000;
